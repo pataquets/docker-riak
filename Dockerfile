@@ -7,7 +7,7 @@ RUN \
       curl \
   && \
   apt-key adv --keyserver hkp://hkps.pool.sks-keyservers.net --recv-keys D59097AB && \
-  curl -sSL \
+  curl --fail --location --silent --show-error \
     "https://packagecloud.io/install/repositories/basho/riak/config_file.list?os=ubuntu&dist=xenial" \
     | tee /etc/apt/sources.list.d/basho.list \
   && \
