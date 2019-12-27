@@ -6,8 +6,8 @@ RUN \
     apt-get -y install \
       curl \
   && \
-  apt-key adv --keyserver hkp://hkps.pool.sks-keyservers.net --recv-keys D59097AB && \
-  curl --fail --location --silent --show-error \
+  apt-key adv --keyserver hkp://hkps.pool.sks-keyservers.net --recv-keys 960B2B2623A0BD5D && \
+  curl -sSL \
     "https://packagecloud.io/install/repositories/basho/riak/config_file.list?os=ubuntu&dist=xenial" \
     | tee /etc/apt/sources.list.d/basho.list \
   && \
@@ -25,3 +25,5 @@ RUN \
   sed -i 's/= 127.0.0.1:/= 0.0.0.0:/g' /etc/riak/riak.conf && \
   sed -i 's/log.console = file/log.console = console/' /etc/riak/riak.conf && \
   nl /etc/riak/riak.conf
+
+ENTRYPOINT [ "riak", "console" ]
